@@ -9,12 +9,12 @@
 
 <!--- protected region package header begins -->
 **Author:**
-- Maximilian Nitsch <m.nitsch@irt.rwth-aachen.de>
+- Maximilian Nitsch <maximilian.nitsch@irt.rwth-aachen.de>
 
 **Affiliation:** Institute of Automatic Control - RWTH Aachen University
 
 **Maintainer:**
-  - Maximilian Nitsch <m.nitsch@irt.rwth-aachen.de>
+  - Maximilian Nitsch <maximilian.nitsch@irt.rwth-aachen.de>
 <!--- protected region package header ends -->
 
 ## Description
