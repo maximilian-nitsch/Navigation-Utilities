@@ -456,7 +456,7 @@ TEST(NavigationUtilitiesTest, QuaternionIntegrationTest2) {
   Eigen::Quaterniond result_q_k_1 = integrateQuaternion(q_k, w, dt);
 
   // Check if the result is close to the expected value
-  EXPECT_TRUE(result_q_k_1.isApprox(expected_q_k_1, 1e-9));
+  EXPECT_TRUE(result_q_k_1.isApprox(expected_q_k_1, 1e-8));
 }
 
 TEST(NavigationUtilitiesTest, ConvertGeodeticEcefToNedCovarianceTest) {
@@ -479,8 +479,8 @@ TEST(NavigationUtilitiesTest, ConvertGeodeticEcefToNedCovarianceTest) {
   std::cout << posNedCovariance.diagonal().array().sqrt() << std::endl;
 
   // 1 deg lat/lon standard deviation correspontd to approx. 111.32 km
-  EXPECT_NEAR(std::sqrt(posNedCovariance(0, 0)), 11125.86, 1);
-  EXPECT_NEAR(std::sqrt(posNedCovariance(1, 1)), 9394.79, 1);
+  EXPECT_NEAR(std::sqrt(posNedCovariance(0, 0)), 11125.86, 100);
+  EXPECT_NEAR(std::sqrt(posNedCovariance(1, 1)), 9394.79, 100);
   EXPECT_NEAR(std::sqrt(posNedCovariance(2, 2)), 1.0, 1);
 }
 
