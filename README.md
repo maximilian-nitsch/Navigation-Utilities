@@ -9,12 +9,12 @@
 
 <!--- protected region package header begins -->
 **Author:**
-- Maximilian Nitsch <m.nitsch@irt.rwth-aachen.de>
+- Maximilian Nitsch <maximilian.nitsch@irt.rwth-aachen.de>
 
 **Affiliation:** Institute of Automatic Control - RWTH Aachen University
 
 **Maintainer:**
-  - Maximilian Nitsch <m.nitsch@irt.rwth-aachen.de>
+  - Maximilian Nitsch <maximilian.nitsch@irt.rwth-aachen.de>
 <!--- protected region package header ends -->
 
 ## Description
@@ -24,7 +24,6 @@ Dedicated Repo for Navigation Utility Functions.
 
 - [Dependencies](#dependencies)
 - [Installation](#installation)
-- [Further Reading](#further-readings)
 - [Contributing](#contributing)
 - [License](#license)
 
