@@ -24,7 +24,6 @@ Dedicated Repo for Navigation Utility Functions.
 
 - [Dependencies](#dependencies)
 - [Installation](#installation)
-- [Further Reading](#further-readings)
 - [Contributing](#contributing)
 - [License](#license)
 
