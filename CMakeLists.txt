@@ -30,7 +30,7 @@ add_library(${PROJECT_NAME} SHARED
 
 # Link the library with Eigen3 (if needed)
 target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
- 
+
 # Install the library and headers
 install(
   TARGETS ${PROJECT_NAME}
