@@ -78,6 +78,7 @@ if(BUILD_TESTING)
 
   # enforce linters and static code analyzers defined in ament_lint_common package
   set(ament_cmake_cppcheck_LANGUAGE c++)
+  set(ament_cmake_cppcheck_ADDITIONAL_INCLUDE_DIRS ${GTEST_FROM_SOURCE_INCLUDE_DIRS})
   ament_lint_auto_find_test_dependencies()
 
   # uncomment to include uncrustify explicitly
