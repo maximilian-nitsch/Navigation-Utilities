@@ -282,30 +282,9 @@ Eigen::Matrix3d convertNedToGeodeticEcefCovariance(
 Eigen::Matrix3d convertGeodeticEcefToNedCovariance(
     const Eigen::Matrix3d& posGeodeticCovariance,
     Eigen::Vector3d& posGeodeticReference, const bool is_input_in_degrees) {
-  // Convert input geodetic coordinates from degrees to radians if requested
-  if (is_input_in_degrees) {
-    posGeodeticReference = convertPosGeoDegToRad(posGeodeticReference);
-  }
-  // Extract latitude from the input vector
-  const double phi = posGeodeticReference(0);
-
-  // Get WGS84 parameters for the given geodetic coordinates
-  Wgs84Parameters wgs84Parameters = getWGS84Parameters(posGeodeticReference);
-
-  // Extract relevant WGS84 parameters from the struct
-  const double R_M = wgs84Parameters.R_M;
-  const double R_N = wgs84Parameters.R_N;
-
-  // Calculate the Jacobian matrix for the transformation
-  Eigen::Matrix3d J = Eigen::Matrix3d::Identity();
-  J(0, 0) = R_M;
-  J(1, 1) = R_N * std::cos(phi);
-  J(2, 2) = -1.0;
-
-  // // // // Transform the covariance matrix from geodetic ECEF to NED
-  Eigen::Matrix3d posNedCovariance = J * posGeodeticCovariance * J.transpose();
-
-  return posNedCovariance;
+  const Eigen::Matrix3d J =
+      calcCurvToCartPosTransfMatrix(posGeodeticReference, is_input_in_degrees);
+  return J * posGeodeticCovariance * J.transpose();
 }
 
 Eigen::Matrix3d calcCartToCurvPosTransfMatrix(Eigen::Vector3d& posGeodetic,

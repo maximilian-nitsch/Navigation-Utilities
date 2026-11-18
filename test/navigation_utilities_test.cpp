@@ -452,6 +452,9 @@ TEST(NavigationUtilitiesTest, QuaternionIntegrationTest2) {
   Eigen::Quaterniond expected_q_k_1(0.706745212781598, 0.707452312369123,
                                     -0.000353549793762536, 0.00176774896881268);
 
+  // The reference product inherits the rounded input quaternion's norm.
+  expected_q_k_1.normalize();
+
   // Call the function
   Eigen::Quaterniond result_q_k_1 = integrateQuaternion(q_k, w, dt);
 
@@ -473,15 +476,12 @@ TEST(NavigationUtilitiesTest, ConvertGeodeticEcefToNedCovarianceTest) {
   Eigen::Matrix3d posNedCovariance = convertGeodeticEcefToNedCovariance(
       posGeodeticCovariance, posGeodeticReference);
 
-  std::cout << "posNedCovariance:\n " << posNedCovariance << std::endl
-            << std::endl;
-
-  std::cout << posNedCovariance.diagonal().array().sqrt() << std::endl;
-
-  // 1 deg lat/lon standard deviation correspontd to approx. 111.32 km
-  EXPECT_NEAR(std::sqrt(posNedCovariance(0, 0)), 11125.86, 100);
-  EXPECT_NEAR(std::sqrt(posNedCovariance(1, 1)), 9394.79, 100);
-  EXPECT_NEAR(std::sqrt(posNedCovariance(2, 2)), 1.0, 1);
+  // Independent reference: central differences of WGS84 ECEF position
+  // in latitude and longitude at this latitude and 120 m ellipsoid height,
+  // scaled by the 0.1 degree angular standard deviation.
+  EXPECT_NEAR(std::sqrt(posNedCovariance(0, 0)), 11092.21972, 1e-4);
+  EXPECT_NEAR(std::sqrt(posNedCovariance(1, 1)), 9252.32675, 1e-4);
+  EXPECT_DOUBLE_EQ(std::sqrt(posNedCovariance(2, 2)), 1.0);
 }
 
 }  // namespace navigation_utilities
